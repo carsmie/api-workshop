@@ -33,7 +33,14 @@ var app = {
     	var val = el.value;
     	if(val.length > 2){
       app.queryAutocomplete(val, function(err, data){
-        console.log(data);
+        // step 1
+        if(err) return console.log(err);
+
+        // step 2
+        if(data.features) app.options = data.features;
+
+        // step 3
+        app.renderResultsList();
       })
     }
    },
