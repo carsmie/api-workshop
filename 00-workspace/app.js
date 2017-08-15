@@ -47,7 +47,28 @@ var app = {
         callback(err)
       }
     })
-  }, 150)
+  }, 150),
+    renderResultsList: function(){
+    // step 1
+    var resultsList = $('#results-list');
+    resultsList.empty();
+
+    // step 2
+    var results = app.options.map(function(feature){
+      var li = $('<li class="results-list-item">' + feature.properties.label + '</li>');
+      return li;
+    })
+
+    // step 3
+    resultsList.append(results);
+
+    // step 4
+    if(app.options.length > 0){
+      resultsList.removeClass('hidden');
+    }else{
+      resultsList.addClass('hidden');
+    }
+  }
 }
 
   $('#search-from-input').on('keyup', {input:'from'}, app.typeAhead);
